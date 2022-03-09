@@ -30,5 +30,9 @@ process.stdin.on("data", function (data) {
   if (cmd === "ls") {
     commands[cmd]();
   }
+  if (cmd.includes("echo")){
+    const a = cmd.slice(4)
+    console.log(a);
+  }
   process.stdout.write("\nprompt > ");
 });
