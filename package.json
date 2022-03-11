@@ -10,6 +10,7 @@
   "main": "bash.js",
   "keywords": [],
   "dependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "request": "^2.88.2"
   }
 }

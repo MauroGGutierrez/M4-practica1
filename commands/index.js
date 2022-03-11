@@ -1,26 +1,45 @@
 var fs = require("fs");
+const request = require('request');
 
-const pwd = () => {
-  process.stdout.write(process.cwd());
+const done=(output)=>{
+  process.stdout.write(output)
+  process.stdout.write("\nprompt > ")
+}
+
+
+const pwd = (file) => {
+  done(process.cwd());
 };
 
-const date = () => {
-  process.stdout.write(Date());
+const date = (file) => {
+  done(Date());
 };
 
-const ls = () => {
+const ls = (file) => {
   fs.readdir(".", (err, files) => {
     if (err) throw err;
+    let res = '';
     files.forEach((file) => {
-      process.stdout.write(file.toString() + "\n"); //"\n" significa un salto de linea
+      res = res + file.toString() + '\n'; // '\n' significa salto de linea
     });
-    process.stdout.write("prompt > ");
+    done(res);
   });
 };
 
+const echo=(file)=>{
+  done(file)
+}
+
+const curl=(file)=>{
+ request(file,(err,res,body)=>{
+  done(body)
+ })
+}
 
 module.exports = {
   pwd,
   date,
   ls,
+  echo,
+  curl,
 };
